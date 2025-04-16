@@ -1,0 +1,46 @@
+<div class="container mt-4">
+  <form class="form-inline mb-3 d-flex justify-content-between" (ngSubmit)="addTrip()">
+    <div class="form-group mr-2">
+      <mat-form-field appearance="outline">
+        <mat-label>Start Point</mat-label>
+        <input
+          matInput
+          placeholder="Start Point"
+          [(ngModel)]="newStart"
+          name="start"
+          required
+        >
+      </mat-form-field>
+    </div>
+    <div class="form-group mr-2">
+      <mat-form-field appearance="outline">
+        <mat-label>End Point</mat-label>
+        <input
+          matInput
+          placeholder="End Point"
+          [(ngModel)]="newEnd"
+          name="end"
+          required
+        >
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" type="submit" class="mb-3">Add Trip</button>
+  </form>
+
+  <div class="trip-line d-flex align-items-center">
+    <div *ngIf="trips.length" class="circle">
+      {{trips[0].start3}}
+    </div>
+
+    <ng-container *ngFor="let t of trips">
+      <div
+        class="connector"
+        [ngClass]="'level-' + t.level"
+        [class.arrow]="t.arrow"
+      ></div>
+      <div class="circle">
+        {{t.end3}}
+      </div>
+    </ng-container>
+  </div>
+</div>
